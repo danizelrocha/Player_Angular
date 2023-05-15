@@ -9,12 +9,13 @@ import { DataSet } from 'vis-data';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  timeline: Timeline;
-  options: {};
+  timeline: Timeline | undefined | any; // adaptedo
+  options: {} | undefined; //adaptado
   data: any;
   groups: any;
 
-  @ViewChild('timeline', { static: true }) TimelineContainer: ElementRef;
+  @ViewChild('timeline', { static: true })
+  TimelineContainer!: ElementRef; // Adaptado
 
   constructor() {
     this.getTimelineData();
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timeline = new Timeline( this.TimelineContainer.nativeElement, null,this.options);
+    this.timeline = new Timeline( this.TimelineContainer.nativeElement,null, this.options);
     this.timeline.setGroups(this.groups);
     this.timeline.setItems(this.data);
   }
